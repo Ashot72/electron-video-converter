@@ -1,0 +1,11 @@
+{
+    "verbose": true,
+    "ignore": [       
+        "platforms/*",
+        "res/*",
+        "resources/*",
+        "plugins/*",
+        "www/*",
+        "src/*"
+    ]
+}

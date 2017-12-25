@@ -1,0 +1,30 @@
+<ion-split-pane>
+  <ion-menu  id="mainMenu" [content]="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="outer-content">
+      <ion-list>
+        <ion-list-header>
+          Categories
+        </ion-list-header>
+        <button menuClose ion-item *ngFor="let p of appPages" (click)="openPage(p)">
+          <img item-start [src]="isCategoryActive(p)">
+          <ion-row text-left>{{ p.title }}</ion-row>
+        </button>
+      </ion-list>
+      <ion-list>
+        <ion-list-header>
+           Authentication
+        </ion-list-header>           
+          <button ion-item *ngIf="!isLoggedIn" text-left (click)="login()"><img item-start [src]="'assets/imgs/login.png'"> Login</button>
+          <button ion-item *ngIf="isLoggedIn" text-left (click)="logout()"><img item-start [src]="'assets/imgs/logout.png'"> Logout</button>              
+      </ion-list>  
+    </ion-content>
+  </ion-menu>
+
+  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+  <ion-nav [root]="rootPage" #content swipeBackEnabled="false" main name="app"></ion-nav>
+</ion-split-pane>

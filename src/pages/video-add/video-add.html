@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Add Video Files</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismiss($event)">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div>
+    <input type="file" #fileDialog style="display: none;" multiple (change)="selected($event)"/>
+    <file-drop headertext="Click or drag video files here to upload" 
+              (onFileDrop)="dropped($event)"                             
+              (click)="fileDialog.click()">      
+    </file-drop>
+    <div>
+        <ion-list text-wrap>
+            <ion-list-header *ngIf="files.length > 0" text-center no-lines>
+              <span ion-text color="primary">File(s) to Upload</span>
+            </ion-list-header> 
+            <ion-item *ngFor="let file of files; let i=index">
+                <span><strong>{{ i + 1 }}. </strong>{{ file.name }} ({{ file.size | fileSize }})</span>              
+                <progress value="0.00" max="100" item-right #progressBars></progress>
+                <button ion-button round (click)="removeFile(file)" class="transform" item-right [disabled]='isDisabled'>Remove</button>
+            </ion-item>           
+        </ion-list>
+     </div>
+     <div>
+        <ion-buttons end>
+          <button *ngIf="files.length > 0" ion-button round (click)="upload()" class="transform" [disabled]='isDisabled'>Upload</button>
+        </ion-buttons>       
+     </div>
+   </div>
+</ion-content>

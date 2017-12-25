@@ -1,0 +1,8 @@
+This is an Electron Video Converter application. Users can convert videos from one type to another. Application can be used as a native phone or web application if video conversion is not your main target and you only want to upload and download videos. You can use the electron application later at any time if you are about to convert some videos. For actual video conversions you need to install ffmpeg framework.
+Application is built on Electron, Ionic 3 (Angular 5) platform and hosted on Firebase. It also uses Firebase Database and Storage to save uploaded videos.
+Firebase hosted app URL is [http://goo.gl/t7WkD1](http://goo.gl/t7WkD1) or [https://electronvideoconverter.firebaseapp.com](https://electronvideoconverter.firebaseapp.com) 
+You need 'videoconverter.dmg' file for Mac and 'videoconverterSetup.exe' installer for Windows to run Electron Video Converter app. Files are located in ‘dist’ folder [https://github.com/Ashot72/electron-video-converter/tree/master/dist](https://github.com/Ashot72/electron-video-converter/tree/master/dist). Please read ‘How to run and test Electron Video Converter application’ below to know how to install ffmpeg and run the application. You may also read ‘Electron Video Converter description’ below if you want to know how this app was built and packaged (ready to publish to appstore) and how to configure the app for development.
+
+Go to [How to run and test Electron Video Converter application]( https://ashot72.github.io/electron-video-converter/index.htm) page. 
+
+Go to [Electron Video Converter description]( https://ashot72.github.io/electron-video-converter/description.htm) page.

@@ -1,0 +1,41 @@
+page-video-list {
+  .scroll-content {
+    background: #EDEDED!important;
+  }
+
+  img {
+    max-width: 170px;
+    border-radius: 50%;
+  }
+
+  .video-card ion-card-header .item {
+    padding: 4px 16px;
+  }
+
+  .video-card ion-card-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .deleteIcon {
+    padding:0;
+    margin-top:-3px;
+  } 
+
+  .select {
+    max-width: 70%;
+  } 
+
+  .card-header-md {
+     padding: 1px;    
+   }
+
+  .item-md ion-avatar[item-left], .item-md ion-thumbnail[item-left], .item-md ion-avatar[item-start], .item-md ion-thumbnail[item-start] {
+    margin: 0;
+  }
+
+  .hand {
+    cursor: pointer;
+  }
+}
+

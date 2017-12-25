@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <form #submitForm="ngForm" novalidate (ngSubmit)="submit(submitForm)">
+    <ion-list no-lines>       
+       <ion-item>
+          <ion-label floating color="primary">Email*</ion-label>
+          <ion-input type="email" [(ngModel)]="user.email" name="email" #email="ngModel" required 
+                     pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
+          </ion-input>
+       </ion-item>      
+        <span ion-text [hidden]="email.valid || submitted === false" color="danger" padding-left>
+         Valid Email is required
+        </span>             
+       <ion-item>
+          <ion-label floating color="primary">Password*</ion-label>
+          <ion-input type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required></ion-input>
+       </ion-item>      
+        <span ion-text [hidden]="password.valid || submitted === false" color="danger" padding-left>
+         Password is required
+        </span>
+     </ion-list>
+     <div padding>
+       <button ion-button round type="submit" class="transform">Login</button>
+    </div>
+    <div>
+       <span ion-text color="primary">Email:</span> demo@gmail.com <br/>
+       <span ion-text color="primary">Password:</span> 123456
+    </div>
+  </form>
+</ion-content>

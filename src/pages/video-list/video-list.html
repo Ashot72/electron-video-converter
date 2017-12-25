@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-navbar color="primary" hideBackButton="true">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addVideo($event)">
+        <ion-icon name="add"></ion-icon>
+      </button>  
+      <button *ngIf="isElectronApp && videos.length > 0" ion-button icon-only (click)="convertVideos($event)">
+        <ion-icon name="videocam"></ion-icon>
+      </button>  
+      <button *ngIf="isElectronApp && videos.length > 0" ion-button icon-only (click)="openFolder($event)">
+        <ion-icon name="folder-open"></ion-icon>
+      </button>  
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-searchbar #searchbar
+        [(ngModel)]="queryText"
+        (ionInput)="getVideos(undefined, true)"
+        placeholder="Search">
+    </ion-searchbar>
+   </ion-toolbar>
+</ion-header>
+<ion-content class="outer-content">
+   <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to load users"
+      refreshingSpinner="circles"
+      refreshingText="Loading videos...">
+    </ion-refresher-content>
+   </ion-refresher>
+  <ion-list text-wrap>
+    <ion-grid fixed>
+      <ion-row align-items-stretch>
+        <ion-col col-12 col-md-6 col-lg-4 col-xs-3 align-stretch *ngFor="let video of videos">
+          <ion-card class="video-card" padding>
+            <ion-card-header>
+              <ion-item>
+                <ion-thumbnail item-left>
+                  <img [src]="'assets/imgs/video.png'" alt="video">
+                </ion-thumbnail>                    
+                <span (click)="downloadVideo(video)" class="hand">{{ video.name | removeGUID }}  </span>  
+                <span ion-button clear (click)="deleteVideo(video)" class="deleteIcon"><ion-icon name="trash"></ion-icon></span>
+             </ion-item>
+            </ion-card-header>
+              <progress value="0.00" max="100" #progressBars style="display:none" [hidden]="progressBars.value === 100"></progress> 
+              <ion-card-content class="outer-content">
+                  <h3><span ion-text color="primary">Size:</span> {{ video.size | fileSize }}</h3>
+                  <h3><span ion-text color="primary">Date:</span> {{ video.date | date:"medium" }}</h3>
+                  <ion-list no-lines>
+                    <span  *ngIf="isElectronApp">
+                      <ion-item> 
+                        <ion-label>Video Type</ion-label>
+                        <ion-select [(ngModel)]="video.type" class="select" (ionChange)="onChange(video, $event)">
+                          <ion-option value="" selected>None</ion-option>                        
+                          <ion-option value="avi">AVI</ion-option>                            
+                          <ion-option value="m4v">M4V</ion-option>
+                          <ion-option value="mov">MOV</ion-option>
+                          <ion-option value="mp4">MP4</ion-option>
+                          <ion-option value="mpeg">MPEG</ion-option>
+                          <ion-option value="mpg">MPG</ion-option>
+                          <ion-option value="ogg">OGG</ion-option>
+                          <ion-option value="ogv">OGV</ion-option>                  
+                          <ion-option value="webm">WebM</ion-option>                                                                                      
+                        </ion-select>              
+                      </ion-item>                                           
+                    </span>             
+                 </ion-list>
+            </ion-card-content>                        
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>
