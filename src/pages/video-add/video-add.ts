@@ -87,7 +87,7 @@ export class VideoAddPage {
     this.videoData.uploadVideos(cid, this.files, ((error, file, i, progress) => {      
       if (error) {
          this.utilSrv.doAlert('Error', `Error while uploading files: '${error}'.`).present();
-         this.isDisabled = true;
+         this.isDisabled = false;
       } else if (progress) {
          this.renderer.setAttribute(progressBars[i].nativeElement, "value", progress);        
       } else {
@@ -96,7 +96,7 @@ export class VideoAddPage {
     }));
   }
 
-  dismiss($event) {
+  dismiss() {
     this.viewCtrl.dismiss();
   }
 }
